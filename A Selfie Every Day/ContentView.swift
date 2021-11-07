@@ -29,8 +29,8 @@ class NotificationManager {
             
         var dateComponents = DateComponents()
             dateComponents.calendar = Calendar.current
-            dateComponents.hour = 23    // 14:00 hours
-            dateComponents.minute = 34
+            dateComponents.hour = 18    // 18:00 hours
+            dateComponents.minute = 00
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         let notificationCenter = UNUserNotificationCenter.current()
