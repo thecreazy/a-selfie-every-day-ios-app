@@ -30,6 +30,8 @@
 		CEB57B3E273928F3008160E9 /* SaveImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveImageManager.swift; sourceTree = "<group>"; };
 		CEB57B4027395F58008160E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEB57B4427398621008160E9 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		CEB57B462739C7B6008160E9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CEB57B472739C86F008160E9 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,9 @@
 		CE23772A27373E32008B4E66 = {
 			isa = PBXGroup;
 			children = (
+				CEB57B482739C90C008160E9 /* docs */,
+				CEB57B472739C86F008160E9 /* LICENSE.md */,
+				CEB57B462739C7B6008160E9 /* README.md */,
 				CE23773527373E32008B4E66 /* A Selfie Every Day */,
 				CE23773427373E32008B4E66 /* Products */,
 			);
@@ -90,6 +95,13 @@
 				CEB57B3E273928F3008160E9 /* SaveImageManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		CEB57B482739C90C008160E9 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = docs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
