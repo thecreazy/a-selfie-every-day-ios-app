@@ -15,6 +15,7 @@
 		CEB57B3D27390658008160E9 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57B3C27390658008160E9 /* CameraView.swift */; };
 		CEB57B3F273928F3008160E9 /* SaveImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57B3E273928F3008160E9 /* SaveImageManager.swift */; };
 		CEB57B4127395F58008160E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57B4027395F58008160E9 /* AppDelegate.swift */; };
+		CEB57B4527398621008160E9 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57B4427398621008160E9 /* CustomColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CEB57B3C27390658008160E9 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		CEB57B3E273928F3008160E9 /* SaveImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveImageManager.swift; sourceTree = "<group>"; };
 		CEB57B4027395F58008160E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CEB57B4427398621008160E9 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				CE23773A27373E34008B4E66 /* Assets.xcassets */,
 				CE23773C27373E34008B4E66 /* Preview Content */,
 				CEB57B3C27390658008160E9 /* CameraView.swift */,
+				CEB57B4427398621008160E9 /* CustomColor.swift */,
 			);
 			path = "A Selfie Every Day";
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB57B4127395F58008160E9 /* AppDelegate.swift in Sources */,
+				CEB57B4527398621008160E9 /* CustomColor.swift in Sources */,
 				CEB57B3B27388D2B008160E9 /* NotificationManager.swift in Sources */,
 				CE23773927373E32008B4E66 /* ContentView.swift in Sources */,
 				CEB57B3F273928F3008160E9 /* SaveImageManager.swift in Sources */,

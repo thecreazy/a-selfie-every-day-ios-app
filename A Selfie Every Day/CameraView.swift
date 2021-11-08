@@ -27,11 +27,11 @@ struct CameraView: View {
                                 presentationMode.wrappedValue.dismiss()
                             }, label: {
                                 Text("Save")
-                                    .foregroundColor(.black)
                                     .fontWeight(.semibold)
                                     .padding(.vertical, 10)
                                     .padding(.horizontal, 20)
                                     .background(Color.white)
+                                    .foregroundColor(.black)
                                     .clipShape(Capsule())
                                 
                             }).padding()

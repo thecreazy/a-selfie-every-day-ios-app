@@ -13,18 +13,31 @@ struct ContentView: View {
     @State private var showingAlert = false
     
     var body: some View {
-        VStack{
-            Text("A selfie every day")
-                .padding()
-            Button("Open camera"){
-                self.isPresented.toggle()
-            }.padding()
-            .background(Color.green)
-            .foregroundColor(Color.white)
-            .fullScreenCover(isPresented: $isPresented, onDismiss: didDismiss , content: CameraView.init )
-            .alert("Image saved", isPresented: $showingAlert) {
-                        Button("OK", role: .cancel) { }
-                    }
+        ZStack{
+            Color.white
+                .edgesIgnoringSafeArea(.all)
+            HStack{
+                Image("AppImage")
+                            .resizable()
+                            .scaledToFit()
+                VStack{
+                    Text("A Selfie Every Day")
+                        .padding()
+                        .font(.title)
+                        .foregroundColor(Color.black)
+                    Button("Open camera"){
+                        self.isPresented.toggle()
+                    }.padding()
+                    .background(CustomColor.primaryColor)
+                    .foregroundColor(Color.white)
+                    .cornerRadius(16)
+                    .font(.title2)
+                    .fullScreenCover(isPresented: $isPresented, onDismiss: didDismiss , content: CameraView.init )
+                    .alert("Image saved", isPresented: $showingAlert) {
+                                Button("OK", role: .cancel) { }
+                            }
+                }
+            }
         }
         .onAppear(){
             UIApplication.shared.applicationIconBadgeNumber = 0
