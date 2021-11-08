@@ -11,7 +11,7 @@ import SwiftUI
 struct A_Selfie_Every_DayApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CameraView()
         }
     }
 }
