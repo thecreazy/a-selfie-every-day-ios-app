@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/thecreazy/a-selfie-every-day-ios-app">
-    <img src="https://github.com/thecreazy/a-selfie-every-day-ios-app/blob/main/docs/logo.png" alt="Icon" width="300"/>
+    <img src="https://github.com/thecreazy/a-selfie-every-day-ios-app/blob/main/docs/icon.png?raw=true" alt="Icon" width="300"/>
   </a>
   <br>
   <br>
