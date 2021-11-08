@@ -50,23 +50,25 @@ struct CameraView: View {
                             
                         }).padding()
                     } else {
-                            Button(action: {
-                                camera.takePic()
-                            }, label: {
-                                ZStack{
-                                    Circle().fill(Color.white).frame(width: 70, height: 70)
-                                    Circle().stroke(Color.white, lineWidth: 2).frame(width: 75, height: 75)
-                                }
-                            }).position(x: UIScreen.main.bounds.size.width - 100, y: (UIScreen.main.bounds.size.height / 2) - 15 )
-                        }
+                        Button(action: {
+                            camera.takePic()
+                        }, label: {
+                            ZStack{
+                                Circle().fill(Color.white).frame(width: 70, height: 70)
+                                Circle().stroke(Color.white, lineWidth: 2).frame(width: 75, height: 75)
+                            }
+                        }).position(x: UIScreen.main.bounds.size.width - 100, y: (UIScreen.main.bounds.size.height / 2) - 15 )
+
+                        Image("Face").scaledToFit().position(x: -120, y: 20 ).frame(width: 120, height: 160)
                     }
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .edgesIgnoringSafeArea(.all)
-            .onAppear(perform: {
-                camera.Check()
-            })
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .edgesIgnoringSafeArea(.all)
+        .onAppear(perform: {
+            camera.Check()
+        })
     }
 }
 
@@ -167,7 +169,12 @@ struct CameraPreview: UIViewRepresentable {
 
 struct CameraView_Previews: PreviewProvider {
     static var previews: some View {
-        CameraView()
+        Group {
+            CameraView()
+                .previewInterfaceOrientation(.landscapeRight)
+            CameraView()
+                .previewInterfaceOrientation(.landscapeRight)
+        }
     }
 }
 
