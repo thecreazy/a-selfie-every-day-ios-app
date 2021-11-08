@@ -14,7 +14,7 @@ struct CameraView: View {
 
     var body: some View {
         ZStack{
-            Color.black.ignoresSafeArea(.all, edges: .all)
+            CameraPreview(camera: camera).ignoresSafeArea(.all, edges: .all)
             VStack{
                 Spacer()
                 HStack{
@@ -55,6 +55,7 @@ class CameraModel: ObservableObject {
     @Published var session = AVCaptureSession()
     @Published var alert = false
     @Published var output = AVCapturePhotoOutput()
+    @Published var preview = AVCaptureVideoPreviewLayer()
     
     func Check(){
         switch AVCaptureDevice.authorizationStatus(for: .video) {
@@ -78,7 +79,7 @@ class CameraModel: ObservableObject {
     func setUp(){
         do{
             self.session.beginConfiguration()
-            let device = AVCaptureDevice.default(.builtInDualCamera, for: .video, position: .front)
+            let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
             let input = try AVCaptureDeviceInput(device: device!)
             if self.session.canAddInput(input){
                 self.session.addInput(input)
@@ -94,8 +95,26 @@ class CameraModel: ObservableObject {
     }
 }
 
+struct CameraPreview: UIViewRepresentable{
+    
+    @ObservedObject var camera : CameraModel
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView(frame: UIScreen.main.bounds)
+        camera.preview = AVCaptureVideoPreviewLayer(session: camera.session)
+        camera.preview.frame = view.frame
+        camera.preview.videoGravity = .resizeAspectFill
+        view.layer.addSublayer(camera.preview)
+        
+        camera.session.startRunning()
+        return view
+    }
+    func updateUIView(_ uiView: UIView, context: Context) {
+    }
+}
+
 struct CameraView_Previews: PreviewProvider {
     static var previews: some View {
         CameraView()
     }
 }
+
