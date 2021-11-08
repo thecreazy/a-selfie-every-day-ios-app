@@ -13,6 +13,7 @@
 		CE23773E27373E34008B4E66 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE23773D27373E34008B4E66 /* Preview Assets.xcassets */; };
 		CEB57B3B27388D2B008160E9 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57B3A27388D2B008160E9 /* NotificationManager.swift */; };
 		CEB57B3D27390658008160E9 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57B3C27390658008160E9 /* CameraView.swift */; };
+		CEB57B3F273928F3008160E9 /* SaveImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57B3E273928F3008160E9 /* SaveImageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		CE23774427373F3E008B4E66 /* A-Selfie-Every-Day-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "A-Selfie-Every-Day-Info.plist"; sourceTree = SOURCE_ROOT; };
 		CEB57B3A27388D2B008160E9 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		CEB57B3C27390658008160E9 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		CEB57B3E273928F3008160E9 /* SaveImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveImageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				CEB57B3A27388D2B008160E9 /* NotificationManager.swift */,
+				CEB57B3E273928F3008160E9 /* SaveImageManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 			files = (
 				CEB57B3B27388D2B008160E9 /* NotificationManager.swift in Sources */,
 				CE23773927373E32008B4E66 /* ContentView.swift in Sources */,
+				CEB57B3F273928F3008160E9 /* SaveImageManager.swift in Sources */,
 				CE23773727373E32008B4E66 /* A_Selfie_Every_DayApp.swift in Sources */,
 				CEB57B3D27390658008160E9 /* CameraView.swift in Sources */,
 			);

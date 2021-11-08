@@ -18,18 +18,23 @@ struct CameraView: View {
             VStack{
                 Spacer()
                 HStack{
-                if camera.isTaken{
-                    Button(action: {
-                    }, label: {
-                        Text("Save")
-                            .foregroundColor(.black)
-                            .fontWeight(.semibold)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 20)
-                            .background(Color.white)
-                            .clipShape(Capsule())
-                        
-                    }).padding()
+                if camera.isTaken {
+                    if !camera.picData.isEmpty {
+                        Button(action: {
+                            camera.savePic()
+                        }, label: {
+                            Text("Save")
+                                .foregroundColor(.black)
+                                .fontWeight(.semibold)
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 20)
+                                .background(Color.white)
+                                .clipShape(Capsule())
+                            
+                        }).padding()
+                    } else {
+                        Spacer()
+                    }
                     Spacer()
                     Button(action: camera.retakePic, label: {
                         Text("Retake")
@@ -66,6 +71,7 @@ class CameraModel: NSObject,ObservableObject,AVCapturePhotoCaptureDelegate {
     @Published var alert = false
     @Published var output = AVCapturePhotoOutput()
     @Published var preview = AVCaptureVideoPreviewLayer()
+    @Published var picData = Data(count: 0)
     
     func Check(){
         switch AVCaptureDevice.authorizationStatus(for: .video) {
@@ -104,29 +110,31 @@ class CameraModel: NSObject,ObservableObject,AVCapturePhotoCaptureDelegate {
     }
     
     func takePic() {
-        DispatchQueue.global(qos: .background).async {
-            self.output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
-            self.session.stopRunning()
-            DispatchQueue.main.async {
-                withAnimation{self.isTaken.toggle()}
-            }
-        }
+        let captureSettings = AVCapturePhotoSettings()
+        self.output.capturePhoto(with: captureSettings, delegate: self)
+        withAnimation{ self.isTaken.toggle() }
     }
     
     func retakePic() {
-        DispatchQueue.global(qos: .background).async {
-            self.session.startRunning()
-            DispatchQueue.main.async {
-                withAnimation{self.isTaken.toggle()}
-            }
-        }
+        self.picData = Data(count: 0)
+        self.session.startRunning()
+        withAnimation{ self.isTaken.toggle() }
     }
+
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        if error != nil {
-            return
+        self.session.stopRunning()
+        if let error = error {
+            print(error.localizedDescription)
         }
-        print("Pic taken!")
+        guard let imageData = photo.fileDataRepresentation() else {return}
+        self.picData = imageData
+    }
+    
+    func savePic() {
+        let image = UIImage(data: self.picData)!
+        SaveImageManager.instance.save(image: image)
+        print("Saved image")
     }
 }
 
