@@ -29,11 +29,21 @@ struct CameraView: View {
                             .background(Color.white)
                             .clipShape(Capsule())
                         
-                    }).padding(.leading)
+                    }).padding()
                     Spacer()
+                    Button(action: camera.retakePic, label: {
+                        Text("Retake")
+                            .foregroundColor(.black)
+                            .fontWeight(.semibold)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 20)
+                            .background(Color.white)
+                            .clipShape(Capsule())
+                        
+                    }).padding()
                 } else {
                         Button(action: {
-                            camera.isTaken.toggle()
+                            camera.takePic()
                         }, label: {
                             ZStack{
                                 Circle().fill(Color.white).frame(width: 70, height: 70)
@@ -50,7 +60,7 @@ struct CameraView: View {
     }
 }
 
-class CameraModel: ObservableObject {
+class CameraModel: NSObject,ObservableObject,AVCapturePhotoCaptureDelegate {
     @Published var isTaken = false
     @Published var session = AVCaptureSession()
     @Published var alert = false
@@ -91,7 +101,32 @@ class CameraModel: ObservableObject {
         } catch{
             print(error.localizedDescription)
         }
-        
+    }
+    
+    func takePic() {
+        DispatchQueue.global(qos: .background).async {
+            self.output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+            self.session.stopRunning()
+            DispatchQueue.main.async {
+                withAnimation{self.isTaken.toggle()}
+            }
+        }
+    }
+    
+    func retakePic() {
+        DispatchQueue.global(qos: .background).async {
+            self.session.startRunning()
+            DispatchQueue.main.async {
+                withAnimation{self.isTaken.toggle()}
+            }
+        }
+    }
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        if error != nil {
+            return
+        }
+        print("Pic taken!")
     }
 }
 
