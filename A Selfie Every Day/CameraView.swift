@@ -9,21 +9,38 @@ import SwiftUI
 import AVFoundation
 
 struct CameraView: View {
-
+    
+    @Environment(\.presentationMode) var presentationMode
+    
     @StateObject var camera = CameraModel()
 
     var body: some View {
-        ZStack{
-            CameraPreview(camera: camera).ignoresSafeArea(.all, edges: .all)
-            VStack{
-                Spacer()
-                HStack{
-                if camera.isTaken {
-                    if !camera.picData.isEmpty {
-                        Button(action: {
-                            camera.savePic()
-                        }, label: {
-                            Text("Save")
+            ZStack{
+                CameraPreview(camera: camera).ignoresSafeArea(.all, edges: .all)
+                VStack{
+                    Spacer()
+                    HStack{
+                    if camera.isTaken {
+                        if !camera.picData.isEmpty {
+                            Button(action: {
+                                camera.savePic()
+                                presentationMode.wrappedValue.dismiss()
+                            }, label: {
+                                Text("Save")
+                                    .foregroundColor(.black)
+                                    .fontWeight(.semibold)
+                                    .padding(.vertical, 10)
+                                    .padding(.horizontal, 20)
+                                    .background(Color.white)
+                                    .clipShape(Capsule())
+                                
+                            }).padding()
+                        } else {
+                            Spacer()
+                        }
+                        Spacer()
+                        Button(action: camera.retakePic, label: {
+                            Text("Retake")
                                 .foregroundColor(.black)
                                 .fontWeight(.semibold)
                                 .padding(.vertical, 10)
@@ -33,35 +50,23 @@ struct CameraView: View {
                             
                         }).padding()
                     } else {
-                        Spacer()
-                    }
-                    Spacer()
-                    Button(action: camera.retakePic, label: {
-                        Text("Retake")
-                            .foregroundColor(.black)
-                            .fontWeight(.semibold)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 20)
-                            .background(Color.white)
-                            .clipShape(Capsule())
-                        
-                    }).padding()
-                } else {
-                        Button(action: {
-                            camera.takePic()
-                        }, label: {
-                            ZStack{
-                                Circle().fill(Color.white).frame(width: 70, height: 70)
-                                Circle().stroke(Color.white, lineWidth: 2).frame(width: 75, height: 75)
-                            }
-                        }).position(x: UIScreen.main.bounds.size.width - 100, y: (UIScreen.main.bounds.size.height / 2) - 15 )
+                            Button(action: {
+                                camera.takePic()
+                            }, label: {
+                                ZStack{
+                                    Circle().fill(Color.white).frame(width: 70, height: 70)
+                                    Circle().stroke(Color.white, lineWidth: 2).frame(width: 75, height: 75)
+                                }
+                            }).position(x: UIScreen.main.bounds.size.width - 100, y: (UIScreen.main.bounds.size.height / 2) - 15 )
+                        }
                     }
                 }
             }
-        }
-        .onAppear(perform: {
-            camera.Check()
-        })
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .edgesIgnoringSafeArea(.all)
+            .onAppear(perform: {
+                camera.Check()
+            })
     }
 }
 
