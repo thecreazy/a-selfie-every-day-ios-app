@@ -54,7 +54,7 @@ struct CameraView: View {
                                 Circle().fill(Color.white).frame(width: 70, height: 70)
                                 Circle().stroke(Color.white, lineWidth: 2).frame(width: 75, height: 75)
                             }
-                        })
+                        }).position(x: UIScreen.main.bounds.size.width - 100, y: (UIScreen.main.bounds.size.height / 2) - 15 )
                     }
                 }
             }
@@ -138,13 +138,17 @@ class CameraModel: NSObject,ObservableObject,AVCapturePhotoCaptureDelegate {
     }
 }
 
-struct CameraPreview: UIViewRepresentable{
+struct CameraPreview: UIViewRepresentable {
     
     @ObservedObject var camera : CameraModel
     func makeUIView(context: Context) -> UIView {
         let view = UIView(frame: UIScreen.main.bounds)
+        view.transform = CGAffineTransform.init(rotationAngle: -90 * CGFloat.pi/180)
+        view.frame.origin.x = 0
+        view.frame.origin.y = 0
         camera.preview = AVCaptureVideoPreviewLayer(session: camera.session)
         camera.preview.frame = view.frame
+        camera.preview.connection?.videoOrientation = AVCaptureVideoOrientation.landscapeRight
         camera.preview.videoGravity = .resizeAspectFill
         view.layer.addSublayer(camera.preview)
         
@@ -153,6 +157,7 @@ struct CameraPreview: UIViewRepresentable{
     }
     func updateUIView(_ uiView: UIView, context: Context) {
     }
+    
 }
 
 struct CameraView_Previews: PreviewProvider {
