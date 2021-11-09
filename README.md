@@ -10,10 +10,12 @@
 
 # 📷 A Selfie Every Day 
 
-<img src="https://github.com/thecreazy/a-selfie-every-day-ios-app/blob/main/docs/article.png?raw=true" alt="Icon" width="300"/>
+<img src="https://github.com/thecreazy/a-selfie-every-day-ios-app/blob/main/docs/article.png?raw=true" alt="Icon" width="100%"/>
 
 This app was created for my Medium article: [Can a Javascript developer make an SwiftUI app?](https://medium.com/@riccardocanella/can-a-javascript-developer-make-an-swiftui-app-d3f2487fba4c)
+
 Please don't judge me :)
+
 But if you want help me to impreve it, feel free to open issue/pull request 
 
 
